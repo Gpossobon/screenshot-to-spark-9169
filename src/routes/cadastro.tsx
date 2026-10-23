@@ -19,13 +19,13 @@ import {
 export const Route = createFileRoute("/cadastro")({
   head: () => ({
     meta: [
-      { title: "Criar conta | Mouse RaceTrap" },
+      { title: "Criar conta | MouseTrap Car Race" },
       {
         name: "description",
         content:
-          "Crie sua conta na Mouse RaceTrap e participe da competição de carrinhos movidos a ratoeira.",
+          "Crie sua conta na MouseTrap Car Race e participe da competição de carrinhos movidos a ratoeira.",
       },
-      { property: "og:title", content: "Criar conta | Mouse RaceTrap" },
+      { property: "og:title", content: "Criar conta | MouseTrap Car Race" },
       {
         property: "og:description",
         content: "Entre para a competição e faça parte da nossa comunidade de corrida.",

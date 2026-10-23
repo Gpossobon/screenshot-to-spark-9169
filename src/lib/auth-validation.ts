@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-/** Password rules for Mouse RaceTrap accounts. */
+/** Password rules for MouseTrap Car Race accounts. */
 export const PASSWORD_MIN_LENGTH = 7;
 
 export type PasswordRuleId = "length" | "letter" | "number";

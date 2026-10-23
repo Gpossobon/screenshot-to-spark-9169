@@ -13,13 +13,13 @@ import { translateAuthError, validateEmail } from "@/lib/auth-validation";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Entrar | Mouse RaceTrap" },
+      { title: "Entrar | MouseTrap Car Race" },
       {
         name: "description",
         content:
-          "Acesse sua conta na plataforma Mouse RaceTrap e prepare-se para a próxima corrida de carrinhos movidos a ratoeira.",
+          "Acesse sua conta na plataforma MouseTrap Car Race e prepare-se para a próxima corrida de carrinhos movidos a ratoeira.",
       },
-      { property: "og:title", content: "Entrar | Mouse RaceTrap" },
+      { property: "og:title", content: "Entrar | MouseTrap Car Race" },
       {
         property: "og:description",
         content: "Acesse sua conta e prepare-se para a próxima corrida.",

@@ -12,9 +12,9 @@ import { isPasswordValid, translateAuthError } from "@/lib/auth-validation";
 export const Route = createFileRoute("/reset-password")({
   head: () => ({
     meta: [
-      { title: "Nova senha | Mouse RaceTrap" },
-      { name: "description", content: "Defina uma nova senha para sua conta Mouse RaceTrap." },
-      { property: "og:title", content: "Nova senha | Mouse RaceTrap" },
+      { title: "Nova senha | MouseTrap Car Race" },
+      { name: "description", content: "Defina uma nova senha para sua conta MouseTrap Car Race." },
+      { property: "og:title", content: "Nova senha | MouseTrap Car Race" },
       { property: "og:description", content: "Defina uma nova senha para sua conta." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
