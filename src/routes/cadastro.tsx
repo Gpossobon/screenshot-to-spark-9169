@@ -106,10 +106,10 @@ function SignupPage() {
           Enviamos um link de confirmação para <strong>{sentTo}</strong>. Abra o e-mail e clique no
           link para ativar sua conta.
         </FormAlert>
-        <p className="mt-6 text-sm text-muted-foreground">
+        <p className="mt-4 text-sm text-muted-foreground">
           Não encontrou? Verifique a caixa de spam ou lixo eletrônico.
         </p>
-        <Button asChild variant="race" size="auth" className="mt-8">
+        <Button asChild variant="race" size="auth" className="mt-6">
           <Link to="/">Ir para o login</Link>
         </Button>
       </AuthLayout>
