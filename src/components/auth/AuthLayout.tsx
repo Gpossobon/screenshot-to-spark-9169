@@ -72,7 +72,7 @@ export function AuthLayout({
           className="relative hidden overflow-hidden border-r border-border bg-surface lg:flex lg:w-[46%] lg:items-center lg:justify-center"
         >
           <RaceTrackArt />
-          <div className="relative z-10 flex flex-col items-center px-10 py-16">
+          <div className="relative flex flex-col items-center px-10 py-16">
             <img
               src={mascot.url}
               alt=""
