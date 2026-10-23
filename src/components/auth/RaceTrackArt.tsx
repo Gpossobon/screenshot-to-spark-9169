@@ -40,17 +40,17 @@ export function RaceTrackArt() {
 
       {/* Spring coil */}
       <g className="text-brand" stroke="currentColor" strokeWidth="1.25" opacity="0.22">
-        <path d="M470 90 c 10 -24 30 -24 40 0 s 30 24 40 0 s 30 -24 40 0 s 30 24 40 0" />
-        <path d="M470 106 c 10 -24 30 -24 40 0 s 30 24 40 0 s 30 -24 40 0 s 30 24 40 0" />
+        <path d="M490 400 c 6 -18 18 -18 24 0 s 18 18 24 0 s 18 -18 24 0 s 18 18 24 0" />
+        <path d="M490 416 c 6 -18 18 -18 24 0 s 18 18 24 0 s 18 -18 24 0 s 18 18 24 0" />
       </g>
 
       {/* Start grid ticks */}
       <g className="text-brand" fill="currentColor" opacity="0.1">
         {Array.from({ length: 6 }).map((_, i) => (
-          <rect key={i} x={30 + i * 18} y={40} width="9" height="9" />
+          <rect key={i} x={460 + i * 18} y={560} width="9" height="9" />
         ))}
         {Array.from({ length: 6 }).map((_, i) => (
-          <rect key={`b${i}`} x={39 + i * 18} y={49} width="9" height="9" />
+          <rect key={`b${i}`} x={469 + i * 18} y={569} width="9" height="9" />
         ))}
       </g>
     </svg>
