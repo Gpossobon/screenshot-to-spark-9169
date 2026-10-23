@@ -13,10 +13,10 @@ export const Route = createFileRoute("/painel")({
   ssr: false,
   head: () => ({
     meta: [
-      { title: "Painel do piloto | Mouse RaceTrap" },
-      { name: "description", content: "Área do participante da competição Mouse RaceTrap." },
-      { property: "og:title", content: "Painel do piloto | Mouse RaceTrap" },
-      { property: "og:description", content: "Área do participante da competição Mouse RaceTrap." },
+      { title: "Painel do piloto | MouseTrap Car Race" },
+      { name: "description", content: "Área do participante da competição MouseTrap Car Race." },
+      { property: "og:title", content: "Painel do piloto | MouseTrap Car Race" },
+      { property: "og:description", content: "Área do participante da competição MouseTrap Car Race." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "noindex" },

@@ -13,10 +13,10 @@ export function InstitutionalFooter() {
             className="h-6 w-auto shrink-0 sm:h-7"
           />
           <span aria-hidden="true" className="h-6 w-px shrink-0 bg-border" />
-          <span className="text-sm font-semibold text-brand">Projeto acadêmico</span>
+          <span className="text-sm font-semibold uppercase tracking-wide text-brand">Projeto acadêmico</span>
         </div>
         <p className="text-xs text-muted-foreground">
-          Mouse RaceTrap · Competição de carrinhos movidos a ratoeira
+          MouseTrap Car Race • 2026
         </p>
       </div>
     </footer>

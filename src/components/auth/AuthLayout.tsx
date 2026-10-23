@@ -13,17 +13,17 @@ export function AuthHeader({ mode }: { mode: Mode }) {
         <Link
           to="/"
           className="flex items-center gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          aria-label="Mouse RaceTrap — página inicial"
+          aria-label="MouseTrap Car Race — página inicial"
         >
           <img
             src={mascot.url}
-            alt="Mascote Mouse RaceTrap"
+            alt="Mascote MouseTrap Car Race"
             width={56}
             height={56}
             className="h-10 w-10 shrink-0 object-contain sm:h-12 sm:w-12 lg:h-14 lg:w-14 lg:short:h-12 lg:short:w-12"
           />
-          <span className="hidden font-headline text-lg text-brand sm:block">
-            Mouse <span className="text-foreground">RaceTrap</span>
+          <span className="hidden whitespace-nowrap font-headline text-base text-brand sm:block lg:text-lg">
+            MouseTrap <span className="text-foreground">Car Race</span>
           </span>
         </Link>
 
@@ -80,8 +80,8 @@ export function AuthLayout({
               height={420}
               className="animate-mascot-in w-[min(22rem,30vw,44vh)] object-contain"
             />
-            <p className="relative mt-2 font-headline text-[clamp(2rem,3.4vw,3.25rem)] text-brand">
-              Mouse <span className="text-foreground">RaceTrap</span>
+            <p className="relative mt-2 whitespace-nowrap text-center font-headline text-[clamp(1.75rem,2.7vw,2.75rem)] text-brand">
+              MouseTrap <span className="text-foreground">Car Race</span>
             </p>
             <p className="mt-3 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.22em] text-muted-foreground">
               <span className="h-0.5 w-8 bg-primary" />

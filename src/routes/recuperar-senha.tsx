@@ -11,12 +11,12 @@ import { translateAuthError, validateEmail } from "@/lib/auth-validation";
 export const Route = createFileRoute("/recuperar-senha")({
   head: () => ({
     meta: [
-      { title: "Recuperar senha | Mouse RaceTrap" },
+      { title: "Recuperar senha | MouseTrap Car Race" },
       {
         name: "description",
-        content: "Receba por e-mail as instruções para redefinir a senha da sua conta Mouse RaceTrap.",
+        content: "Receba por e-mail as instruções para redefinir a senha da sua conta MouseTrap Car Race.",
       },
-      { property: "og:title", content: "Recuperar senha | Mouse RaceTrap" },
+      { property: "og:title", content: "Recuperar senha | MouseTrap Car Race" },
       {
         property: "og:description",
         content: "Informe seu e-mail para receber as instruções de recuperação.",

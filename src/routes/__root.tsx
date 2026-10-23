@@ -79,10 +79,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Mouse RaceTrap" },
+      { title: "MouseTrap Car Race" },
       {
         name: "description",
-        content: "Plataforma da competição Mouse RaceTrap de carrinhos movidos a ratoeira.",
+        content: "Plataforma da competição MouseTrap Car Race de carrinhos movidos a ratoeira.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
