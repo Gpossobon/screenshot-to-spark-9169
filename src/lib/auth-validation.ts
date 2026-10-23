@@ -42,12 +42,12 @@ export const fullNameSchema = z
 
 export function validateEmail(value: string): string | null {
   const r = emailSchema.safeParse(value);
-  return r.success ? null : r.error.issues[0].message;
+  return r.success ? null : (r.error.issues[0]?.message ?? "Campo inválido.");
 }
 
 export function validateFullName(value: string): string | null {
   const r = fullNameSchema.safeParse(value);
-  return r.success ? null : r.error.issues[0].message;
+  return r.success ? null : (r.error.issues[0]?.message ?? "Campo inválido.");
 }
 
 /** Translate auth service errors into clear Portuguese messages. */
