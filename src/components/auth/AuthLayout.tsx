@@ -9,7 +9,7 @@ type Mode = "signin" | "signup" | "none";
 export function AuthHeader({ mode }: { mode: Mode }) {
   return (
     <header className="border-b border-border bg-surface">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-8">
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:h-16 sm:px-8 lg:h-20 lg:short:h-16">
         <Link
           to="/"
           className="flex items-center gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -20,7 +20,7 @@ export function AuthHeader({ mode }: { mode: Mode }) {
             alt="Mascote Mouse RaceTrap"
             width={56}
             height={56}
-            className="h-11 w-11 object-contain sm:h-14 sm:w-14"
+            className="h-10 w-10 shrink-0 object-contain sm:h-12 sm:w-12 lg:h-14 lg:w-14 lg:short:h-12 lg:short:w-12"
           />
           <span className="hidden font-headline text-lg text-brand sm:block">
             Mouse <span className="text-foreground">RaceTrap</span>
@@ -62,7 +62,7 @@ export function AuthLayout({
   children: ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="min-h-viewport flex flex-col bg-background">
       <AuthHeader mode={mode} />
 
       <main className="flex flex-1 flex-col lg:flex-row">
@@ -72,13 +72,13 @@ export function AuthLayout({
           className="relative hidden overflow-hidden border-r border-border bg-surface lg:flex lg:w-[46%] lg:items-center lg:justify-center"
         >
           <RaceTrackArt />
-          <div className="relative flex flex-col items-center px-10 py-16">
+          <div className="relative flex flex-col items-center px-10 py-8">
             <img
               src={mascot.url}
               alt=""
               width={420}
               height={420}
-              className="animate-mascot-in w-[min(22rem,30vw)] object-contain"
+              className="animate-mascot-in w-[min(22rem,30vw,44vh)] object-contain"
             />
             <p className="relative mt-2 font-headline text-[clamp(2rem,3.4vw,3.25rem)] text-brand">
               Mouse <span className="text-foreground">RaceTrap</span>
@@ -91,13 +91,13 @@ export function AuthLayout({
         </section>
 
         {/* Auth region */}
-        <section className="flex flex-1 justify-center px-5 pb-12 pt-10 sm:px-8 sm:pt-14 lg:items-center lg:py-16">
+        <section className="flex flex-1 items-center justify-center px-5 py-5 sm:px-8 sm:py-8 short:py-3">
           <div className="w-full max-w-[30rem]">
             <h1 className="font-headline text-[clamp(1.85rem,4vw,2.5rem)] text-foreground">
               {title}
             </h1>
-            <p className="mt-3 text-base text-muted-foreground">{subtitle}</p>
-            <div className="mt-8">{children}</div>
+            <p className="mt-2 text-base text-muted-foreground">{subtitle}</p>
+            <div className="mt-6 short:mt-3">{children}</div>
           </div>
         </section>
       </main>

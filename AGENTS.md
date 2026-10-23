@@ -13,3 +13,4 @@
 - Auth screens share `src/components/auth/AuthLayout.tsx` (header, visual panel, institutional footer) so all screens stay consistent.
 - Password/email rules and auth error translation live in `src/lib/auth-validation.ts` (covered by its test) — single source for every form.
 - Brand images are CDN asset pointers in `src/assets/*.asset.json`; never replace them with generated images.
+- Auth screens fill the viewport via the `min-h-viewport` utility (100vh → 100dvh) and tighten spacing with the `short:` variant (max-height 720px); use `size="auth"` buttons there — keeps login visible without scrolling while longer forms can still scroll.

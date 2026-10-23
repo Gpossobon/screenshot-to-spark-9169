@@ -3,6 +3,8 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+/* Short viewports (e.g. 1280x720, 360x640): auth screens tighten vertical rhythm. */
+@custom-variant short (@media (max-height: 720px));
 
 /*
  * Mouse RaceTrap design system.
@@ -148,6 +150,12 @@
   letter-spacing: -0.01em;
   line-height: 0.95;
   text-transform: uppercase;
+}
+
+/* Full visible height: 100vh fallback, 100dvh where supported (mobile browser bars). */
+@utility min-h-viewport {
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 @utility shadow-focus {

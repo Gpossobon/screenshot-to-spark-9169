@@ -61,7 +61,7 @@ function RecoverPage() {
       title="Recupere sua conta"
       subtitle="Informe seu e-mail para receber as instruções de recuperação."
     >
-      <form noValidate onSubmit={handleSubmit} className="space-y-6">
+      <form noValidate onSubmit={handleSubmit} className="space-y-4 short:space-y-3">
         {formError && <FormAlert tone="error">{formError}</FormAlert>}
         {sent && (
           <FormAlert tone="success">
@@ -86,13 +86,13 @@ function RecoverPage() {
           error={emailError}
         />
 
-        <Button type="submit" variant="race" size="xl" disabled={submitting} aria-busy={submitting}>
+        <Button type="submit" variant="race" size="auth" disabled={submitting} aria-busy={submitting}>
           {submitting && <Loader2 className="animate-spin" aria-hidden="true" />}
           {submitting ? "Enviando..." : "Enviar instruções"}
         </Button>
       </form>
 
-      <div className="mt-10 border-t border-border pt-6">
+      <div className="mt-6 border-t border-border pt-4 short:mt-4 short:pt-3">
         <Link
           to="/"
           className="inline-flex items-center gap-2 rounded text-[15px] font-semibold text-primary underline underline-offset-4 hover:text-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"

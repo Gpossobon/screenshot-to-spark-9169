@@ -60,7 +60,7 @@ export function GoogleButton({
     <Button
       type="button"
       variant="google"
-      size="xl"
+      size="auth"
       onClick={handleClick}
       disabled={loading}
       aria-busy={loading}
@@ -73,7 +73,7 @@ export function GoogleButton({
 
 export function OrDivider() {
   return (
-    <div className="my-7 flex items-center gap-4" role="separator" aria-label="ou continue com">
+    <div className="my-5 flex items-center gap-4 short:my-3" role="separator" aria-label="ou continue com">
       <span className="h-px flex-1 bg-border" />
       <span className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
         Ou continue com

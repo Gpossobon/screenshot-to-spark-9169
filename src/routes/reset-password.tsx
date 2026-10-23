@@ -87,18 +87,18 @@ function ResetPasswordPage() {
       )}
 
       {ready === "invalid" && (
-        <div className="space-y-6">
+        <div className="space-y-4 short:space-y-3">
           <FormAlert tone="error">
             Este link de recuperação é inválido ou expirou. Solicite um novo link.
           </FormAlert>
-          <Button asChild variant="race" size="xl">
+          <Button asChild variant="race" size="auth">
             <Link to="/recuperar-senha">Solicitar novo link</Link>
           </Button>
         </div>
       )}
 
       {ready === "ok" && (
-        <form noValidate onSubmit={handleSubmit} className="space-y-6">
+        <form noValidate onSubmit={handleSubmit} className="space-y-4 short:space-y-3">
           {formError && <FormAlert tone="error">{formError}</FormAlert>}
           <AuthField
             label="Nova senha"
@@ -128,7 +128,7 @@ function ResetPasswordPage() {
           <Button
             type="submit"
             variant="race"
-            size="xl"
+            size="auth"
             disabled={!valid || submitting}
             aria-busy={submitting}
           >
