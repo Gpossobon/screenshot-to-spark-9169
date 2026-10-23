@@ -22,7 +22,7 @@ export const AuthField = forwardRef<HTMLInputElement, Props>(function AuthField(
   const inputType = revealable ? (visible ? "text" : "password") : type;
 
   return (
-    <div className={cn("space-y-2", className)}>
+    <div className={cn("space-y-1.5", className)}>
       <label htmlFor={inputId} className="block text-[15px] font-semibold text-foreground">
         {label}
         {required && (
@@ -33,7 +33,7 @@ export const AuthField = forwardRef<HTMLInputElement, Props>(function AuthField(
       </label>
       <div
         className={cn(
-          "group flex h-14 items-center gap-3 rounded-md border bg-field px-4 transition-[border-color,box-shadow] duration-150",
+          "group flex h-12 items-center short:h-11 gap-3 rounded-md border bg-field px-4 transition-[border-color,box-shadow] duration-150",
           "focus-within:border-brand focus-within:shadow-focus",
           error ? "border-destructive" : "border-input hover:border-foreground/60",
         )}

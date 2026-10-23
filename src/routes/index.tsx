@@ -71,7 +71,7 @@ function LoginPage() {
       title="Acesse sua conta"
       subtitle="Entre na plataforma e prepare-se para a próxima corrida."
     >
-      <form noValidate onSubmit={handleSubmit} className="space-y-6">
+      <form noValidate onSubmit={handleSubmit} className="space-y-4 short:space-y-3">
         {formError && <FormAlert tone="error">{formError}</FormAlert>}
 
         <AuthField
@@ -89,7 +89,7 @@ function LoginPage() {
           error={emailError}
         />
 
-        <div className="space-y-3">
+        <div className="space-y-2">
           <AuthField
             label="Senha"
             icon={Lock}
@@ -111,7 +111,7 @@ function LoginPage() {
           </Link>
         </div>
 
-        <Button type="submit" variant="race" size="xl" disabled={submitting} aria-busy={submitting}>
+        <Button type="submit" variant="race" size="auth" disabled={submitting} aria-busy={submitting}>
           {submitting && <Loader2 className="animate-spin" aria-hidden="true" />}
           {submitting ? "Entrando..." : "Entrar"}
         </Button>
@@ -120,7 +120,7 @@ function LoginPage() {
       <OrDivider />
       <GoogleButton label="Continuar com Google" onError={setFormError} />
 
-      <div className="mt-10 border-t border-border pt-6 text-[15px] font-semibold text-foreground">
+      <div className="mt-6 border-t border-border pt-4 short:mt-4 short:pt-3 text-[15px] font-semibold text-foreground">
         Ainda não tem uma conta?{" "}
         <Link
           to="/cadastro"

@@ -109,7 +109,7 @@ function SignupPage() {
         <p className="mt-6 text-sm text-muted-foreground">
           Não encontrou? Verifique a caixa de spam ou lixo eletrônico.
         </p>
-        <Button asChild variant="race" size="xl" className="mt-8">
+        <Button asChild variant="race" size="auth" className="mt-8">
           <Link to="/">Ir para o login</Link>
         </Button>
       </AuthLayout>
@@ -122,7 +122,7 @@ function SignupPage() {
       title="Entre para a competição"
       subtitle="Crie sua conta e faça parte da nossa comunidade de corrida."
     >
-      <form noValidate onSubmit={handleSubmit} className="space-y-6">
+      <form noValidate onSubmit={handleSubmit} className="space-y-4 short:space-y-3">
         {formError && <FormAlert tone="error">{formError}</FormAlert>}
 
         <AuthField
@@ -187,7 +187,7 @@ function SignupPage() {
         <Button
           type="submit"
           variant="race"
-          size="xl"
+          size="auth"
           disabled={!formValid || submitting}
           aria-busy={submitting}
         >
@@ -199,7 +199,7 @@ function SignupPage() {
       <OrDivider />
       <GoogleButton label="Cadastrar com Google" onError={setFormError} />
 
-      <div className="mt-10 border-t border-border pt-6 text-[15px] font-semibold text-foreground">
+      <div className="mt-6 border-t border-border pt-4 short:mt-4 short:pt-3 text-[15px] font-semibold text-foreground">
         Já tem uma conta?{" "}
         <Link
           to="/"
