@@ -47,10 +47,10 @@ export function RaceTrackArt() {
       {/* Start grid ticks */}
       <g className="text-brand" fill="currentColor" opacity="0.1">
         {Array.from({ length: 6 }).map((_, i) => (
-          <rect key={i} x={460 + i * 18} y={560} width="9" height="9" />
+          <rect key={i} x={40 + i * 18} y={118} width="9" height="9" />
         ))}
         {Array.from({ length: 6 }).map((_, i) => (
-          <rect key={`b${i}`} x={469 + i * 18} y={569} width="9" height="9" />
+          <rect key={`b${i}`} x={49 + i * 18} y={127} width="9" height="9" />
         ))}
       </g>
     </svg>
