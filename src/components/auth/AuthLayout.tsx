@@ -20,7 +20,7 @@ export function AuthHeader({ mode }: { mode: Mode }) {
             alt="Mascote Mouse RaceTrap"
             width={56}
             height={56}
-            className="h-11 w-11 object-contain sm:h-14 sm:w-14"
+            className="h-11 w-11 object-contain mix-blend-multiply sm:h-14 sm:w-14"
           />
           <span className="hidden font-headline text-lg text-brand sm:block">
             Mouse <span className="text-foreground">RaceTrap</span>
@@ -78,9 +78,9 @@ export function AuthLayout({
               alt=""
               width={420}
               height={420}
-              className="animate-mascot-in w-[min(26rem,34vw)] object-contain"
+              className="animate-mascot-in w-[min(26rem,34vw)] object-contain mix-blend-multiply"
             />
-            <p className="mt-2 font-headline text-[clamp(2rem,3.4vw,3.25rem)] text-brand">
+            <p className="relative mt-2 font-headline text-[clamp(2rem,3.4vw,3.25rem)] text-brand">
               Mouse <span className="text-foreground">RaceTrap</span>
             </p>
             <p className="mt-3 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.22em] text-muted-foreground">

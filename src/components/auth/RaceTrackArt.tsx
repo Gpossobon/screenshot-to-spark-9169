@@ -9,11 +9,11 @@ export function RaceTrackArt() {
     >
       {/* Track lanes */}
       <g className="text-brand" stroke="currentColor" strokeWidth="1">
-        <path d="M-40 640 C 120 560, 220 720, 380 640 S 620 520, 700 600" opacity="0.18" />
-        <path d="M-40 672 C 120 592, 220 752, 380 672 S 620 552, 700 632" opacity="0.12" />
+        <path d="M-40 730 C 120 650, 220 810, 380 730 S 620 610, 700 690" opacity="0.18" />
+        <path d="M-40 762 C 120 682, 220 842, 380 762 S 620 642, 700 722" opacity="0.12" />
         <path
           className="animate-dash-run"
-          d="M-40 656 C 120 576, 220 736, 380 656 S 620 536, 700 616"
+          d="M-40 746 C 120 666, 220 826, 380 746 S 620 626, 700 706"
           opacity="0.28"
           strokeDasharray="14 12"
         />
@@ -40,17 +40,17 @@ export function RaceTrackArt() {
 
       {/* Spring coil */}
       <g className="text-brand" stroke="currentColor" strokeWidth="1.25" opacity="0.22">
-        <path d="M470 700 c 10 -24 30 -24 40 0 s 30 24 40 0 s 30 -24 40 0 s 30 24 40 0" />
-        <path d="M470 716 c 10 -24 30 -24 40 0 s 30 24 40 0 s 30 -24 40 0 s 30 24 40 0" />
+        <path d="M470 90 c 10 -24 30 -24 40 0 s 30 24 40 0 s 30 -24 40 0 s 30 24 40 0" />
+        <path d="M470 106 c 10 -24 30 -24 40 0 s 30 24 40 0 s 30 -24 40 0 s 30 24 40 0" />
       </g>
 
       {/* Start grid ticks */}
       <g className="text-brand" fill="currentColor" opacity="0.1">
         {Array.from({ length: 6 }).map((_, i) => (
-          <rect key={i} x={30 + i * 18} y={740} width="9" height="9" />
+          <rect key={i} x={30 + i * 18} y={40} width="9" height="9" />
         ))}
         {Array.from({ length: 6 }).map((_, i) => (
-          <rect key={`b${i}`} x={39 + i * 18} y={749} width="9" height="9" />
+          <rect key={`b${i}`} x={39 + i * 18} y={49} width="9" height="9" />
         ))}
       </g>
     </svg>
