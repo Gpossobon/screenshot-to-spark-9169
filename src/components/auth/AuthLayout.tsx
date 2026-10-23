@@ -97,7 +97,7 @@ export function AuthLayout({
               {title}
             </h1>
             <p className="mt-2 text-base text-muted-foreground">{subtitle}</p>
-            <div className="mt-6 short:mt-4">{children}</div>
+            <div className="mt-6 short:mt-3">{children}</div>
           </div>
         </section>
       </main>
