@@ -38,10 +38,34 @@ export function RaceTrackArt() {
         strokeLinecap="round"
       />
 
-      {/* Spring coil */}
-      <g className="text-brand" stroke="currentColor" strokeWidth="1.25" opacity="0.22">
-        <path d="M490 400 c 6 -18 18 -18 24 0 s 18 18 24 0 s 18 -18 24 0 s 18 18 24 0" />
-        <path d="M490 416 c 6 -18 18 -18 24 0 s 18 18 24 0 s 18 -18 24 0 s 18 18 24 0" />
+      {/* Mousetrap torsion spring: coil, two arms and the arc the bar travels */}
+      <g
+        className="text-brand"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        transform="translate(492 318) rotate(-8)"
+      >
+        {/* Swing path of the released arm (stored elastic energy) */}
+        <path
+          d="M-92 -78 A 120 120 0 0 0 -118 22"
+          strokeWidth="1"
+          strokeDasharray="3 6"
+          opacity="0.3"
+        />
+        <path d="M-122 12 l 4 10 l 7 -8" strokeWidth="1" opacity="0.3" />
+        {/* Coil loops */}
+        <g strokeWidth="1.25" opacity="0.32">
+          {Array.from({ length: 7 }).map((_, i) => (
+            <ellipse key={i} cx={-21 + i * 7} cy="0" rx="8" ry="17" />
+          ))}
+        </g>
+        {/* Arm (bail) under tension, with hooked end */}
+        <path d="M-29 -10 L -92 -78 l -14 6" strokeWidth="1.5" opacity="0.3" />
+        {/* Anchor arm */}
+        <path d="M29 10 L 86 34 l 2 -12" strokeWidth="1.5" opacity="0.24" />
+        {/* Pivot */}
+        <circle cx="0" cy="0" r="2.5" fill="currentColor" stroke="none" opacity="0.35" />
       </g>
 
       {/* Start grid ticks */}

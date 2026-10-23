@@ -80,10 +80,10 @@ export function AuthLayout({
               height={420}
               className="animate-mascot-in w-[min(22rem,30vw,44vh)] object-contain"
             />
-            <p className="relative mt-2 whitespace-nowrap text-center font-headline text-[clamp(1.75rem,2.7vw,2.75rem)] text-brand">
+            <p className="relative -mt-1 whitespace-nowrap text-center font-headline text-[clamp(1.75rem,2.7vw,2.75rem)] leading-none text-brand">
               MouseTrap <span className="text-foreground">Car Race</span>
             </p>
-            <p className="mt-3 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+            <p className="mt-2.5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.22em] text-muted-foreground">
               <span className="h-0.5 w-8 bg-primary" />
               Energia elástica em movimento
             </p>
