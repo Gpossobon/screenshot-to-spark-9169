@@ -50,6 +50,38 @@ export function AuthHeader({ mode }: { mode: Mode }) {
   );
 }
 
+/**
+ * Shared left-hand identity panel (mascot + name + slogan) in one centred
+ * container. Its size never depends on the form, so it sits in the same
+ * place on every auth screen.
+ */
+export function AuthVisualPanel() {
+  return (
+    <section
+      aria-hidden="true"
+      className="relative hidden overflow-hidden border-r border-border bg-surface lg:flex lg:w-[46%] lg:shrink-0 lg:items-center lg:justify-center"
+    >
+      <RaceTrackArt />
+      <div className="relative flex flex-col items-center px-10 py-8">
+        <img
+          src={mascot.url}
+          alt=""
+          width={420}
+          height={420}
+          className="animate-mascot-in aspect-square w-[min(22rem,30vw,44vh)] object-contain"
+        />
+        <p className="relative -mt-1 whitespace-nowrap text-center font-headline text-[clamp(1.75rem,2.7vw,2.75rem)] leading-none text-brand">
+          MouseTrap <span className="text-foreground">Car Race</span>
+        </p>
+        <p className="mt-2.5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+          <span className="h-0.5 w-8 bg-primary" />
+          Energia elástica em movimento
+        </p>
+      </div>
+    </section>
+  );
+}
+
 export function AuthLayout({
   mode,
   title,
@@ -62,37 +94,17 @@ export function AuthLayout({
   children: ReactNode;
 }) {
   return (
-    <div className="min-h-viewport flex flex-col bg-background">
+    // Desktop: the shell is exactly one screen tall; only the form column scrolls,
+    // so header and identity panel stay put no matter how long the form is.
+    <div className="min-h-viewport flex flex-col bg-background lg:h-viewport lg:overflow-hidden">
       <AuthHeader mode={mode} />
 
-      <main className="flex flex-1 flex-col lg:flex-row">
-        {/* Visual region */}
-        <section
-          aria-hidden="true"
-          className="relative hidden overflow-hidden border-r border-border bg-surface lg:flex lg:w-[46%] lg:items-center lg:justify-center"
-        >
-          <RaceTrackArt />
-          <div className="relative flex flex-col items-center px-10 py-8">
-            <img
-              src={mascot.url}
-              alt=""
-              width={420}
-              height={420}
-              className="animate-mascot-in w-[min(22rem,30vw,44vh)] object-contain"
-            />
-            <p className="relative -mt-1 whitespace-nowrap text-center font-headline text-[clamp(1.75rem,2.7vw,2.75rem)] leading-none text-brand">
-              MouseTrap <span className="text-foreground">Car Race</span>
-            </p>
-            <p className="mt-2.5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-              <span className="h-0.5 w-8 bg-primary" />
-              Energia elástica em movimento
-            </p>
-          </div>
-        </section>
+      <main className="flex flex-1 flex-col lg:min-h-0 lg:flex-row">
+        <AuthVisualPanel />
 
         {/* Auth region */}
-        <section className="flex flex-1 items-center justify-center px-5 py-5 sm:px-8 sm:py-8 short:py-3">
-          <div className="w-full max-w-[30rem]">
+        <section className="flex flex-1 justify-center px-5 py-5 sm:px-8 sm:py-8 short:py-3 lg:overflow-y-auto">
+          <div className="my-auto w-full max-w-[30rem]">
             <h1 className="font-headline text-[clamp(1.85rem,4vw,2.5rem)] text-foreground">
               {title}
             </h1>

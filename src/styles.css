@@ -158,6 +158,12 @@
   min-height: 100dvh;
 }
 
+/* Exact visible height — desktop auth shell, so only the form column scrolls. */
+@utility h-viewport {
+  height: 100vh;
+  height: 100dvh;
+}
+
 @utility shadow-focus {
   box-shadow: var(--shadow-focus);
 }
