@@ -66,7 +66,7 @@ function ApprovalsPage() {
         <p className="text-xs font-bold uppercase tracking-[0.22em] text-primary">Organização</p>
         <h1 className="mt-2 font-headline text-[clamp(2rem,5vw,3rem)]">Aprovação de capitães</h1>
         <p className="mt-3 text-base text-muted-foreground">
-          Participantes que marcaram "Sou capitão" só criam a equipe depois da sua aprovação.
+          Participantes que responderam "Sim" em "Você é o capitão?" só criam a equipe depois da sua aprovação.
         </p>
 
         <section aria-labelledby="pending-title" className="mt-8 rounded-xl border border-border bg-card">
