@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { useQueryClient } from "@tanstack/react-query";
-import { GraduationCap, LayoutDashboard, LogOut, Menu, Users } from "lucide-react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { isAdminQueryOptions } from "@/lib/captain-requests";
+import { useAuthSession } from "@/hooks/use-auth-session";
+import { BadgeCheck, GraduationCap, LayoutDashboard, LogOut, Menu, Users } from "lucide-react";
 // Same official mascot as the login screen (user's choice).
 import teamLogo from "@/assets/mouse-racetrap-mascote.png.asset.json";
 import {
@@ -16,6 +18,9 @@ import { supabase } from "@/integrations/supabase/client";
 export function TeamHeader() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { session } = useAuthSession();
+  const userId = session?.user.id ?? "";
+  const { data: isAdmin } = useQuery({ ...isAdminQueryOptions(userId), enabled: !!userId });
 
   async function handleSignOut() {
     await queryClient.cancelQueries();
@@ -70,6 +75,13 @@ export function TeamHeader() {
                 <GraduationCap aria-hidden="true" /> Dados acadêmicos
               </Link>
             </DropdownMenuItem>
+            {isAdmin && (
+              <DropdownMenuItem asChild>
+                <Link to="/aprovacoes">
+                  <BadgeCheck aria-hidden="true" /> Aprovar capitães
+                </Link>
+              </DropdownMenuItem>
+            )}
             <DropdownMenuSeparator />
             <DropdownMenuItem onSelect={handleSignOut}>
               <LogOut aria-hidden="true" /> Sair
