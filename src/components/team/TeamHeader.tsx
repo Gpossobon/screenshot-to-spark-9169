@@ -1,8 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { GraduationCap, LayoutDashboard, LogOut, Menu, Users } from "lucide-react";
-// TEMPORARY: the "capivara piloto" logo for this page has not been uploaded yet.
-// Swap this import for its asset pointer once the file is available.
+// Same official mascot as the login screen (user's choice).
 import teamLogo from "@/assets/mouse-racetrap-mascote.png.asset.json";
 import {
   DropdownMenu,
