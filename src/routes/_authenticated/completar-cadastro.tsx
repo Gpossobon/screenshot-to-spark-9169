@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
-import { Building2, IdCard, Loader2, Mail, User, Users } from "lucide-react";
+import { Building2, Crown, IdCard, Loader2, Mail, User, Users } from "lucide-react";
+import { myCaptainStatusKey, myCaptainStatusQueryOptions, setCaptainRequest } from "@/lib/captain-requests";
 import { useRef, useState, type FormEvent } from "react";
 import { AccountBadge } from "@/components/auth/AccountBadge";
 import { AuthField } from "@/components/auth/AuthField";
@@ -38,7 +39,10 @@ export const Route = createFileRoute("/_authenticated/completar-cadastro")({
     ],
   }),
   loader: ({ context }) =>
-    context.queryClient.ensureQueryData(academicProfileQueryOptions(context.user.id)),
+    Promise.all([
+      context.queryClient.ensureQueryData(academicProfileQueryOptions(context.user.id)),
+      context.queryClient.ensureQueryData(myCaptainStatusQueryOptions(context.user.id)),
+    ]),
   component: CompleteProfilePage,
 });
 
@@ -47,6 +51,7 @@ function CompleteProfilePage() {
   const queryClient = useQueryClient();
   const { user } = Route.useRouteContext();
   const { data: saved } = useSuspenseQuery(academicProfileQueryOptions(user.id));
+  const { data: captainStatus } = useSuspenseQuery(myCaptainStatusQueryOptions(user.id));
 
   const meta = user.user_metadata as { full_name?: string; name?: string };
   const email = user.email ?? "";
@@ -57,6 +62,11 @@ function CompleteProfilePage() {
     campus: saved?.campus ?? "",
     turma: saved?.turma ?? "",
   });
+  // "Você é o capitão?" — new participants must answer; returning ones start from their saved answer.
+  const [captain, setCaptain] = useState<"sim" | "nao" | "">(
+    captainStatus === "pending" ? "sim" : saved ? "nao" : "",
+  );
+  const [captainError, setCaptainError] = useState("");
   const [errors, setErrors] = useState<AcademicErrors>({});
   const [formError, setFormError] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -72,10 +82,14 @@ function CompleteProfilePage() {
     e.preventDefault();
     if (inFlight.current) return;
     const result = validateAcademicProfile(form);
-    if (!result.ok) {
-      setErrors(result.errors);
-      const first = (["full_name", "ra", "campus", "turma"] as const).find((k) => result.errors[k]);
-      if (first) document.getElementById(`academic-${first}`)?.focus();
+    const needsCaptainAnswer = captainStatus !== "approved" && captain === "";
+    if (!result.ok || needsCaptainAnswer) {
+      setErrors(result.ok ? {} : result.errors);
+      if (needsCaptainAnswer) setCaptainError("Informe se você é o capitão da equipe.");
+      const first = result.ok
+        ? undefined
+        : (["full_name", "ra", "campus", "turma"] as const).find((k) => result.errors[k]);
+      document.getElementById(first ? `academic-${first}` : "academic-captain")?.focus();
       return;
     }
     inFlight.current = true;
@@ -85,6 +99,10 @@ function CompleteProfilePage() {
     try {
       const row = await saveAcademicProfile(user.id, result.data);
       queryClient.setQueryData(academicProfileKey(user.id), row);
+      if (captainStatus !== "approved") {
+        const next = await setCaptainRequest(captain === "sim");
+        queryClient.setQueryData(myCaptainStatusKey(user.id), next);
+      }
       navigate({ to: "/minha-equipe", replace: true });
     } catch (err) {
       const message = err instanceof Error ? err.message.toLowerCase() : "";
@@ -190,6 +208,52 @@ function CompleteProfilePage() {
                 error={errors.turma ?? null}
               />
             </div>
+
+            {captainStatus === "approved" ? (
+              <div className="flex items-center gap-3 rounded-md border border-border bg-surface px-4 py-3 text-sm">
+                <Crown aria-hidden="true" className="size-4 shrink-0 text-primary" />
+                <span>Você é capitão aprovado e pode criar sua equipe.</span>
+              </div>
+            ) : (
+              <fieldset aria-describedby="captain-hint captain-error">
+                <legend className="text-sm font-semibold text-foreground">Você é o capitão da equipe?</legend>
+                <div role="radiogroup" className="mt-2 grid grid-cols-2 gap-3">
+                  {(
+                    [
+                      ["sim", "Sim"],
+                      ["nao", "Não"],
+                    ] as const
+                  ).map(([value, label]) => (
+                    <button
+                      key={value}
+                      type="button"
+                      role="radio"
+                      id={value === "sim" ? "academic-captain" : undefined}
+                      aria-checked={captain === value}
+                      onClick={() => {
+                        setCaptain(value);
+                        setCaptainError("");
+                      }}
+                      className="h-12 rounded-md border border-input bg-field text-[15px] font-semibold transition-colors hover:border-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring aria-checked:border-ink aria-checked:bg-ink aria-checked:text-ink-foreground short:h-11"
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+                <p id="captain-hint" className="mt-2 text-sm text-muted-foreground">
+                  {captainStatus === "pending"
+                    ? "Seu pedido de capitão está aguardando aprovação."
+                    : captainStatus === "rejected"
+                      ? "Seu pedido anterior foi recusado. Marque Sim para pedir de novo."
+                      : "Capitães precisam de aprovação da organização antes de criar a equipe."}
+                </p>
+                {captainError && (
+                  <p id="captain-error" role="alert" className="mt-1 text-sm font-medium text-destructive">
+                    {captainError}
+                  </p>
+                )}
+              </fieldset>
+            )}
 
             <div className="pt-2">
               <Button
