@@ -44,12 +44,81 @@ export type Database = {
         }
         Relationships: []
       }
+      team_members: {
+        Row: {
+          joined_at: string
+          role: string
+          team_id: string
+          user_id: string
+        }
+        Insert: {
+          joined_at?: string
+          role?: string
+          team_id: string
+          user_id: string
+        }
+        Update: {
+          joined_at?: string
+          role?: string
+          team_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "team_members_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      teams: {
+        Row: {
+          captain_id: string
+          created_at: string
+          id: string
+        }
+        Insert: {
+          captain_id: string
+          created_at?: string
+          id?: string
+        }
+        Update: {
+          captain_id?: string
+          created_at?: string
+          id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      add_team_member: { Args: { p_user_id: string }; Returns: undefined }
+      create_my_team: { Args: never; Returns: string }
+      get_my_team: {
+        Args: never
+        Returns: {
+          full_name: string
+          joined_at: string
+          ra: string
+          role: string
+          team_id: string
+          user_id: string
+        }[]
+      }
+      remove_team_member: { Args: { p_user_id: string }; Returns: undefined }
+      search_participants: {
+        Args: { p_query: string }
+        Returns: {
+          full_name: string
+          in_team: boolean
+          ra: string
+          user_id: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never

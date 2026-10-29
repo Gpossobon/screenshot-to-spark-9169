@@ -1,0 +1,83 @@
+import { Link, useNavigate } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
+import { GraduationCap, LayoutDashboard, LogOut, Menu, Users } from "lucide-react";
+// TEMPORARY: the "capivara piloto" logo for this page has not been uploaded yet.
+// Swap this import for its asset pointer once the file is available.
+import teamLogo from "@/assets/mouse-racetrap-mascote.png.asset.json";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { supabase } from "@/integrations/supabase/client";
+
+/** Header used only by the "Minha Equipe" page. */
+export function TeamHeader() {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  async function handleSignOut() {
+    await queryClient.cancelQueries();
+    queryClient.clear();
+    await supabase.auth.signOut();
+    navigate({ to: "/", replace: true });
+  }
+
+  return (
+    <header className="border-b border-border bg-surface">
+      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:h-20 sm:px-8">
+        <Link
+          to="/minha-equipe"
+          className="flex items-center gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          aria-label="Race Team — Minha equipe"
+        >
+          <img
+            src={teamLogo.url}
+            alt="Logo Race Team"
+            width={56}
+            height={56}
+            className="h-11 w-11 shrink-0 object-contain sm:h-14 sm:w-14"
+          />
+          <span className="flex flex-col leading-none">
+            <span className="font-headline text-lg text-brand sm:text-xl">Race Team</span>
+            <span className="mt-1 text-xs font-semibold text-muted-foreground sm:text-sm">
+              Corrida de Carrinhos
+            </span>
+          </span>
+        </Link>
+
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            aria-label="Abrir menu"
+            className="flex size-11 items-center justify-center rounded-md text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <Menu aria-hidden="true" className="size-6" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-56">
+            <DropdownMenuItem asChild>
+              <Link to="/painel">
+                <LayoutDashboard aria-hidden="true" /> Painel
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link to="/minha-equipe">
+                <Users aria-hidden="true" /> Minha equipe
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link to="/completar-cadastro">
+                <GraduationCap aria-hidden="true" /> Dados acadêmicos
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onSelect={handleSignOut}>
+              <LogOut aria-hidden="true" /> Sair
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    </header>
+  );
+}
