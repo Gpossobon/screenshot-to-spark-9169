@@ -35,6 +35,9 @@ import {
   translateTeamError,
 } from "@/lib/team-rules";
 import { cn } from "@/lib/utils";
+import { canCreateTeam, myCaptainStatusQueryOptions } from "@/lib/captain-requests";
+import { Link } from "@tanstack/react-router";
+import { Clock } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/minha-equipe")({
   head: () => ({
@@ -61,7 +64,10 @@ export const Route = createFileRoute("/_authenticated/minha-equipe")({
     if (!isAcademicProfileComplete(profile)) {
       throw redirect({ to: "/completar-cadastro", replace: true });
     }
-    await context.queryClient.ensureQueryData(myTeamQueryOptions(context.user.id));
+    await Promise.all([
+      context.queryClient.ensureQueryData(myTeamQueryOptions(context.user.id)),
+      context.queryClient.ensureQueryData(myCaptainStatusQueryOptions(context.user.id)),
+    ]);
   },
   component: MyTeamPage,
 });
@@ -70,6 +76,7 @@ function MyTeamPage() {
   const queryClient = useQueryClient();
   const { user } = Route.useRouteContext();
   const { data: members } = useSuspenseQuery(myTeamQueryOptions(user.id));
+  const { data: captainStatus } = useSuspenseQuery(myCaptainStatusQueryOptions(user.id));
 
   const [addOpen, setAddOpen] = useState(false);
   const [creating, setCreating] = useState(false);
@@ -189,13 +196,31 @@ function MyTeamPage() {
               </span>
               <p className="mt-4 font-semibold">Você ainda não faz parte de uma equipe.</p>
               <p className="mt-1 max-w-sm text-sm text-muted-foreground">
-                Crie sua equipe para se tornar o capitão e convidar até {MAX_TEAM_SIZE - 1} colegas. Se outro
-                capitão adicionar você, a equipe dele aparecerá aqui.
+                {canCreateTeam(captainStatus)
+                  ? `Seu pedido de capitão foi aprovado. Crie sua equipe e convide até ${MAX_TEAM_SIZE - 1} colegas.`
+                  : captainStatus === "pending"
+                    ? "Seu pedido para ser capitão está aguardando aprovação da organização. Enquanto isso, outro capitão pode adicionar você à equipe dele."
+                    : captainStatus === "rejected"
+                      ? "Seu pedido para ser capitão foi recusado. Quando um capitão adicionar você, a equipe dele aparecerá aqui."
+                      : "Quando um capitão adicionar você, a equipe dele aparecerá aqui."}
               </p>
-              <Button className="mt-6 h-11 rounded-full px-6 font-semibold" disabled={creating} onClick={handleCreate}>
-                {creating ? <Loader2 aria-hidden="true" className="animate-spin" /> : <Crown aria-hidden="true" />}
-                Criar minha equipe
-              </Button>
+              {canCreateTeam(captainStatus) ? (
+                <Button className="mt-6 h-11 rounded-full px-6 font-semibold" disabled={creating} onClick={handleCreate}>
+                  {creating ? <Loader2 aria-hidden="true" className="animate-spin" /> : <Crown aria-hidden="true" />}
+                  Criar minha equipe
+                </Button>
+              ) : captainStatus === "pending" ? (
+                <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-pill px-4 py-2 text-sm font-semibold">
+                  <Clock aria-hidden="true" className="size-4" /> Aguardando aprovação
+                </span>
+              ) : (
+                <Link
+                  to="/completar-cadastro"
+                  className="mt-6 rounded text-sm font-semibold text-muted-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  Quero ser capitão
+                </Link>
+              )}
             </div>
           ) : (
             <ul className="divide-y divide-border">
