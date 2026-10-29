@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as RecuperarSenhaRouteImport } from './routes/recuperar-senha'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedAprovacoesRouteImport } from './routes/_authenticated/aprovacoes'
 import { Route as AuthenticatedCompletarCadastroRouteImport } from './routes/_authenticated/completar-cadastro'
 import { Route as AuthenticatedMinhaEquipeRouteImport } from './routes/_authenticated/minha-equipe'
 import { Route as AuthenticatedPainelRouteImport } from './routes/_authenticated/painel'
@@ -42,6 +43,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAprovacoesRoute = AuthenticatedAprovacoesRouteImport.update({
+  id: '/aprovacoes',
+  path: '/aprovacoes',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedCompletarCadastroRoute =
   AuthenticatedCompletarCadastroRouteImport.update({
     id: '/completar-cadastro',
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/cadastro': typeof CadastroRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/aprovacoes': typeof AuthenticatedAprovacoesRoute
   '/completar-cadastro': typeof AuthenticatedCompletarCadastroRoute
   '/minha-equipe': typeof AuthenticatedMinhaEquipeRoute
   '/painel': typeof AuthenticatedPainelRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/cadastro': typeof CadastroRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/aprovacoes': typeof AuthenticatedAprovacoesRoute
   '/completar-cadastro': typeof AuthenticatedCompletarCadastroRoute
   '/minha-equipe': typeof AuthenticatedMinhaEquipeRoute
   '/painel': typeof AuthenticatedPainelRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/cadastro': typeof CadastroRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/aprovacoes': typeof AuthenticatedAprovacoesRoute
   '/_authenticated/completar-cadastro': typeof AuthenticatedCompletarCadastroRoute
   '/_authenticated/minha-equipe': typeof AuthenticatedMinhaEquipeRoute
   '/_authenticated/painel': typeof AuthenticatedPainelRoute
@@ -96,6 +105,7 @@ export interface FileRouteTypes {
     | '/cadastro'
     | '/recuperar-senha'
     | '/reset-password'
+    | '/aprovacoes'
     | '/completar-cadastro'
     | '/minha-equipe'
     | '/painel'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
     | '/cadastro'
     | '/recuperar-senha'
     | '/reset-password'
+    | '/aprovacoes'
     | '/completar-cadastro'
     | '/minha-equipe'
     | '/painel'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '/cadastro'
     | '/recuperar-senha'
     | '/reset-password'
+    | '/_authenticated/aprovacoes'
     | '/_authenticated/completar-cadastro'
     | '/_authenticated/minha-equipe'
     | '/_authenticated/painel'
@@ -165,6 +177,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/aprovacoes': {
+      id: '/_authenticated/aprovacoes'
+      path: '/aprovacoes'
+      fullPath: '/aprovacoes'
+      preLoaderRoute: typeof AuthenticatedAprovacoesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/completar-cadastro': {
       id: '/_authenticated/completar-cadastro'
       path: '/completar-cadastro'
@@ -190,12 +209,14 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAprovacoesRoute: typeof AuthenticatedAprovacoesRoute
   AuthenticatedCompletarCadastroRoute: typeof AuthenticatedCompletarCadastroRoute
   AuthenticatedMinhaEquipeRoute: typeof AuthenticatedMinhaEquipeRoute
   AuthenticatedPainelRoute: typeof AuthenticatedPainelRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAprovacoesRoute: AuthenticatedAprovacoesRoute,
   AuthenticatedCompletarCadastroRoute: AuthenticatedCompletarCadastroRoute,
   AuthenticatedMinhaEquipeRoute: AuthenticatedMinhaEquipeRoute,
   AuthenticatedPainelRoute: AuthenticatedPainelRoute,
