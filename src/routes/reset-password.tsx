@@ -71,7 +71,7 @@ function ResetPasswordPage() {
       setFormError(translateAuthError(error));
       return;
     }
-    navigate({ to: "/painel", replace: true });
+    navigate({ to: "/minha-equipe", replace: true });
   }
 
   return (
