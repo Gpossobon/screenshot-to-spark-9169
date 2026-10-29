@@ -34,6 +34,8 @@ const TEAM_ERRORS: Record<string, string> = {
   NOT_CAPTAIN: "Somente o capitão pode gerenciar os integrantes.",
   PARTICIPANT_NOT_FOUND: "Participante não encontrado.",
   PROFILE_INCOMPLETE: "Complete seus dados acadêmicos antes de criar uma equipe.",
+  CAPTAIN_NOT_APPROVED: "Seu pedido de capitão ainda não foi aprovado.",
+  NOT_ADMIN: "Somente o administrador pode aprovar capitães.",
   NOT_AUTHENTICATED: "Sua sessão expirou. Entre novamente.",
 };
 
