@@ -6,7 +6,7 @@ import { RaceTrackArt } from "./RaceTrackArt";
 
 type Mode = "signin" | "signup" | "none";
 
-export function AuthHeader({ mode }: { mode: Mode }) {
+export function AuthHeader({ mode, actions }: { mode: Mode; actions?: ReactNode }) {
   return (
     <header className="border-b border-border bg-surface">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:h-16 sm:px-8 lg:h-20 lg:short:h-16">
@@ -45,6 +45,7 @@ export function AuthHeader({ mode }: { mode: Mode }) {
             </Link>
           </nav>
         )}
+        {mode === "none" && actions}
       </div>
     </header>
   );
