@@ -41,7 +41,7 @@ function LoginPage() {
   const [formError, setFormError] = useState("");
 
   useEffect(() => {
-    if (session) navigate({ to: "/painel", replace: true });
+    if (session) navigate({ to: "/minha-equipe", replace: true });
   }, [session, navigate]);
 
   const emailError = touched.email ? validateEmail(email) : null;
@@ -62,7 +62,7 @@ function LoginPage() {
       setFormError(translateAuthError(error));
       return;
     }
-    navigate({ to: "/painel", replace: true });
+    navigate({ to: "/minha-equipe", replace: true });
   }
 
   return (

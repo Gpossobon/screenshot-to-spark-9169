@@ -47,7 +47,7 @@ function SignupPage() {
   const [sentTo, setSentTo] = useState<string | null>(null);
 
   useEffect(() => {
-    if (session) navigate({ to: "/painel", replace: true });
+    if (session) navigate({ to: "/minha-equipe", replace: true });
   }, [session, navigate]);
 
   const nameErr = validateFullName(form.name);
@@ -89,7 +89,7 @@ function SignupPage() {
       return;
     }
     if (data.session) {
-      navigate({ to: "/painel", replace: true });
+      navigate({ to: "/minha-equipe", replace: true });
       return;
     }
     setSentTo(email);

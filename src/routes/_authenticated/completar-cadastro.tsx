@@ -85,7 +85,7 @@ function CompleteProfilePage() {
     try {
       const row = await saveAcademicProfile(user.id, result.data);
       queryClient.setQueryData(academicProfileKey(user.id), row);
-      navigate({ to: "/painel", replace: true });
+      navigate({ to: "/minha-equipe", replace: true });
     } catch (err) {
       const message = err instanceof Error ? err.message.toLowerCase() : "";
       setFormError(
