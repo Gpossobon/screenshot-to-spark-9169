@@ -65,7 +65,7 @@ function CompleteProfilePage() {
   const set = (key: AcademicField) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setForm((f) => ({ ...f, [key]: value }));
-    if (errors[key]) setErrors((er) => ({ ...er, [key]: undefined }));
+    if (errors[key]) setErrors(({ [key]: _removed, ...rest }) => rest);
   };
 
   async function handleSubmit(e: FormEvent) {
@@ -129,7 +129,7 @@ function CompleteProfilePage() {
               maxLength={100}
               value={form.full_name}
               onChange={set("full_name")}
-              error={errors.full_name}
+              error={errors.full_name ?? null}
             />
 
             <AuthField
@@ -159,7 +159,7 @@ function CompleteProfilePage() {
               maxLength={50}
               value={form.ra}
               onChange={set("ra")}
-              error={errors.ra}
+              error={errors.ra ?? null}
             />
 
             <div className="grid gap-5 sm:grid-cols-2">
@@ -174,7 +174,7 @@ function CompleteProfilePage() {
                 maxLength={100}
                 value={form.campus}
                 onChange={set("campus")}
-                error={errors.campus}
+                error={errors.campus ?? null}
               />
               <AuthField
                 id="academic-turma"
@@ -187,7 +187,7 @@ function CompleteProfilePage() {
                 maxLength={100}
                 value={form.turma}
                 onChange={set("turma")}
-                error={errors.turma}
+                error={errors.turma ?? null}
               />
             </div>
 
