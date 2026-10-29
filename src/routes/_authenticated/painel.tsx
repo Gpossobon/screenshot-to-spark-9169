@@ -1,6 +1,6 @@
 import { createFileRoute, Link, redirect, useNavigate } from "@tanstack/react-router";
 import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
-import { Flag, LogOut } from "lucide-react";
+import { Flag, LogOut, Users } from "lucide-react";
 import mascot from "@/assets/mouse-racetrap-mascote.png.asset.json";
 import { AuthHeader } from "@/components/auth/AuthLayout";
 import { InstitutionalFooter } from "@/components/auth/InstitutionalFooter";
@@ -67,9 +67,16 @@ function DashboardPage() {
         >
           Editar dados acadêmicos
         </Link>
-        <Button variant="ink" size="xl" className="mt-10 px-8" onClick={handleSignOut}>
-          <LogOut aria-hidden="true" /> Sair
-        </Button>
+        <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
+          <Button asChild size="xl" className="rounded-full px-8 font-semibold">
+            <Link to="/minha-equipe">
+              <Users aria-hidden="true" /> Minha equipe
+            </Link>
+          </Button>
+          <Button variant="ink" size="xl" className="px-8" onClick={handleSignOut}>
+            <LogOut aria-hidden="true" /> Sair
+          </Button>
+        </div>
       </main>
       <InstitutionalFooter />
     </div>
