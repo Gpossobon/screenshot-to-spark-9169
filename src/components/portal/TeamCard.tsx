@@ -17,7 +17,7 @@ function initials(name: string) {
     .join("");
 }
 
-export function TeamCard({ team, position }: { team: Team; position?: number }) {
+export function TeamCard({ team, position }: { team: Team; position?: number | undefined }) {
   return (
     <Link
       to="/equipes/$slug"
