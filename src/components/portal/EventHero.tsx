@@ -71,13 +71,13 @@ export function EventHero({ event, compact = false }: { event: EventInfo; compac
           Competição acadêmica de carrinhos movidos a ratoeira. Engenharia, energia elástica e muita velocidade.
         </p>
 
-        <dl className="mt-8 grid max-w-2xl grid-cols-1 gap-px overflow-hidden rounded-lg border border-ink-foreground/20 bg-ink-foreground/20 sm:grid-cols-3">
+        <dl className="mt-8 grid max-w-2xl gap-px overflow-hidden rounded-lg border border-ink-foreground/20 bg-ink-foreground/20 grid-cols-3">
           {facts.map(({ icon: Icon, label, value }) => (
-            <div key={label} className="flex items-center gap-3 bg-ink/60 px-4 py-3 backdrop-blur-sm">
-              <Icon aria-hidden="true" className="size-5 shrink-0 text-ink-foreground/70" />
+            <div key={label} className="flex items-center gap-3 bg-ink/60 px-3 py-3 backdrop-blur-sm sm:px-4">
+              <Icon aria-hidden="true" className="hidden size-5 shrink-0 text-ink-foreground/70 sm:block" />
               <div>
                 <dt className="text-[11px] font-bold uppercase tracking-[0.18em] text-ink-foreground/60">{label}</dt>
-                <dd className="font-display text-base font-bold">{value}</dd>
+                <dd className="font-display text-sm font-bold sm:text-base">{value}</dd>
               </div>
             </div>
           ))}
