@@ -52,6 +52,10 @@
   --color-surface: var(--surface);
   --color-field: var(--field);
   --color-pill: var(--pill);
+  --color-steel: var(--steel);
+  --color-podium-1: var(--podium-1);
+  --color-podium-2: var(--podium-2);
+  --color-podium-3: var(--podium-3);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -108,6 +112,18 @@
   --ink: var(--black);
   --ink-foreground: var(--white);
   --pill: oklch(0.905 0.004 67.8);
+  --steel: oklch(0.45 0.03 252);
+
+  /* Portal: podium highlights (gold, silver, bronze) and hero photo overlay */
+  --podium-1: oklch(0.78 0.14 85);
+  --podium-2: oklch(0.78 0.01 252);
+  --podium-3: oklch(0.62 0.11 55);
+  --gradient-hero: linear-gradient(
+    90deg,
+    oklch(0.2 0.045 252.9 / 96%) 0%,
+    oklch(0.2 0.045 252.9 / 82%) 42%,
+    oklch(0.2 0.045 252.9 / 25%) 100%
+  );
 
   --shadow-focus: 0 0 0 3px oklch(0.285 0.056 252.9 / 18%);
 
@@ -166,6 +182,19 @@
 
 @utility shadow-focus {
   box-shadow: var(--shadow-focus);
+}
+
+@utility bg-hero-overlay {
+  background-image: var(--gradient-hero);
+}
+
+/* Diagonal speed stripes used on team emblems */
+@utility bg-speed-stripes {
+  background-image: repeating-linear-gradient(
+    -55deg,
+    oklch(1 0 0 / 7%) 0 10px,
+    transparent 10px 22px
+  );
 }
 
 /* Speed-line entrance for the mascot */
