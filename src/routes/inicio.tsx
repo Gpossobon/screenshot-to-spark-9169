@@ -65,7 +65,10 @@ function HomePage() {
           <div>
             <SectionHeading eyebrow="Grid" title="Equipes" link={{ to: "/equipes", label: "Ver todas" }} className="mb-8" />
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-              {teams.items.slice(0, 2).map((team) => (
+              {[...teams.items]
+                .sort((a, b) => (positionOf.get(a.slug) ?? 99) - (positionOf.get(b.slug) ?? 99))
+                .slice(0, 2)
+                .map((team) => (
                 <TeamCard key={team.slug} team={team} position={positionOf.get(team.slug)} />
               ))}
             </div>
