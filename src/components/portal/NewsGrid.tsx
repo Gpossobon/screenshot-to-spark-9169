@@ -40,7 +40,7 @@ export function NewsGrid({ items, demo, secondaryLimit = 3 }: { items: NewsItem[
           loading="lazy"
           className="absolute inset-0 -z-20 size-full object-cover"
         />
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/70 to-ink/0" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-t from-ink via-ink/70 to-ink/0" />
         <div className="p-6 sm:p-8">
           <Meta item={featured} demo={demo} inverted />
           <h3 className="mt-4 font-headline text-[clamp(1.6rem,3.4vw,2.5rem)]">{featured.title}</h3>
