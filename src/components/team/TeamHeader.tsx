@@ -2,7 +2,7 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { isAdminQueryOptions } from "@/lib/captain-requests";
 import { useAuthSession } from "@/hooks/use-auth-session";
-import { BadgeCheck, GraduationCap, LayoutDashboard, LogOut, Menu, Users } from "lucide-react";
+import { BadgeCheck, Flag, GraduationCap, LayoutDashboard, LogOut, Menu, Users } from "lucide-react";
 // Same official mascot as the login screen (user's choice).
 import teamLogo from "@/assets/mouse-racetrap-mascote.png.asset.json";
 import {
@@ -60,6 +60,11 @@ export function TeamHeader() {
             <Menu aria-hidden="true" className="size-6" />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">
+            <DropdownMenuItem asChild>
+              <Link to="/inicio">
+                <Flag aria-hidden="true" /> Portal da competição
+              </Link>
+            </DropdownMenuItem>
             <DropdownMenuItem asChild>
               <Link to="/painel">
                 <LayoutDashboard aria-hidden="true" /> Painel

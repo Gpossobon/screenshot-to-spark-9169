@@ -12,12 +12,19 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as CadastroRouteImport } from './routes/cadastro'
+import { Route as ClassificacaoRouteImport } from './routes/classificacao'
+import { Route as EventoRouteImport } from './routes/evento'
+import { Route as InicioRouteImport } from './routes/inicio'
+import { Route as NoticiasRouteImport } from './routes/noticias'
 import { Route as RecuperarSenhaRouteImport } from './routes/recuperar-senha'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as ResultadosRouteImport } from './routes/resultados'
 import { Route as AuthenticatedAprovacoesRouteImport } from './routes/_authenticated/aprovacoes'
 import { Route as AuthenticatedCompletarCadastroRouteImport } from './routes/_authenticated/completar-cadastro'
 import { Route as AuthenticatedMinhaEquipeRouteImport } from './routes/_authenticated/minha-equipe'
 import { Route as AuthenticatedPainelRouteImport } from './routes/_authenticated/painel'
+import { Route as EquipesIndexRouteImport } from './routes/equipes.index'
+import { Route as EquipesSlugRouteImport } from './routes/equipes.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -33,6 +40,26 @@ const CadastroRoute = CadastroRouteImport.update({
   path: '/cadastro',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClassificacaoRoute = ClassificacaoRouteImport.update({
+  id: '/classificacao',
+  path: '/classificacao',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventoRoute = EventoRouteImport.update({
+  id: '/evento',
+  path: '/evento',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InicioRoute = InicioRouteImport.update({
+  id: '/inicio',
+  path: '/inicio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NoticiasRoute = NoticiasRouteImport.update({
+  id: '/noticias',
+  path: '/noticias',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RecuperarSenhaRoute = RecuperarSenhaRouteImport.update({
   id: '/recuperar-senha',
   path: '/recuperar-senha',
@@ -41,6 +68,11 @@ const RecuperarSenhaRoute = RecuperarSenhaRouteImport.update({
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResultadosRoute = ResultadosRouteImport.update({
+  id: '/resultados',
+  path: '/resultados',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAprovacoesRoute = AuthenticatedAprovacoesRouteImport.update({
@@ -65,79 +97,138 @@ const AuthenticatedPainelRoute = AuthenticatedPainelRouteImport.update({
   path: '/painel',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const EquipesIndexRoute = EquipesIndexRouteImport.update({
+  id: '/equipes/',
+  path: '/equipes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EquipesSlugRoute = EquipesSlugRouteImport.update({
+  id: '/equipes/$slug',
+  path: '/equipes/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cadastro': typeof CadastroRoute
+  '/classificacao': typeof ClassificacaoRoute
+  '/evento': typeof EventoRoute
+  '/inicio': typeof InicioRoute
+  '/noticias': typeof NoticiasRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/resultados': typeof ResultadosRoute
   '/aprovacoes': typeof AuthenticatedAprovacoesRoute
   '/completar-cadastro': typeof AuthenticatedCompletarCadastroRoute
   '/minha-equipe': typeof AuthenticatedMinhaEquipeRoute
   '/painel': typeof AuthenticatedPainelRoute
+  '/equipes/$slug': typeof EquipesSlugRoute
+  '/equipes/': typeof EquipesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cadastro': typeof CadastroRoute
+  '/classificacao': typeof ClassificacaoRoute
+  '/evento': typeof EventoRoute
+  '/inicio': typeof InicioRoute
+  '/noticias': typeof NoticiasRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/resultados': typeof ResultadosRoute
   '/aprovacoes': typeof AuthenticatedAprovacoesRoute
   '/completar-cadastro': typeof AuthenticatedCompletarCadastroRoute
   '/minha-equipe': typeof AuthenticatedMinhaEquipeRoute
   '/painel': typeof AuthenticatedPainelRoute
+  '/equipes/$slug': typeof EquipesSlugRoute
+  '/equipes': typeof EquipesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/cadastro': typeof CadastroRoute
+  '/classificacao': typeof ClassificacaoRoute
+  '/evento': typeof EventoRoute
+  '/inicio': typeof InicioRoute
+  '/noticias': typeof NoticiasRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/resultados': typeof ResultadosRoute
   '/_authenticated/aprovacoes': typeof AuthenticatedAprovacoesRoute
   '/_authenticated/completar-cadastro': typeof AuthenticatedCompletarCadastroRoute
   '/_authenticated/minha-equipe': typeof AuthenticatedMinhaEquipeRoute
   '/_authenticated/painel': typeof AuthenticatedPainelRoute
+  '/equipes/$slug': typeof EquipesSlugRoute
+  '/equipes/': typeof EquipesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/cadastro'
+    | '/classificacao'
+    | '/evento'
+    | '/inicio'
+    | '/noticias'
     | '/recuperar-senha'
     | '/reset-password'
+    | '/resultados'
     | '/aprovacoes'
     | '/completar-cadastro'
     | '/minha-equipe'
     | '/painel'
+    | '/equipes/$slug'
+    | '/equipes/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/cadastro'
+    | '/classificacao'
+    | '/evento'
+    | '/inicio'
+    | '/noticias'
     | '/recuperar-senha'
     | '/reset-password'
+    | '/resultados'
     | '/aprovacoes'
     | '/completar-cadastro'
     | '/minha-equipe'
     | '/painel'
+    | '/equipes/$slug'
+    | '/equipes'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/cadastro'
+    | '/classificacao'
+    | '/evento'
+    | '/inicio'
+    | '/noticias'
     | '/recuperar-senha'
     | '/reset-password'
+    | '/resultados'
     | '/_authenticated/aprovacoes'
     | '/_authenticated/completar-cadastro'
     | '/_authenticated/minha-equipe'
     | '/_authenticated/painel'
+    | '/equipes/$slug'
+    | '/equipes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   CadastroRoute: typeof CadastroRoute
+  ClassificacaoRoute: typeof ClassificacaoRoute
+  EventoRoute: typeof EventoRoute
+  InicioRoute: typeof InicioRoute
+  NoticiasRoute: typeof NoticiasRoute
   RecuperarSenhaRoute: typeof RecuperarSenhaRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  ResultadosRoute: typeof ResultadosRoute
+  EquipesSlugRoute: typeof EquipesSlugRoute
+  EquipesIndexRoute: typeof EquipesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -163,6 +254,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CadastroRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/classificacao': {
+      id: '/classificacao'
+      path: '/classificacao'
+      fullPath: '/classificacao'
+      preLoaderRoute: typeof ClassificacaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/evento': {
+      id: '/evento'
+      path: '/evento'
+      fullPath: '/evento'
+      preLoaderRoute: typeof EventoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inicio': {
+      id: '/inicio'
+      path: '/inicio'
+      fullPath: '/inicio'
+      preLoaderRoute: typeof InicioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/noticias': {
+      id: '/noticias'
+      path: '/noticias'
+      fullPath: '/noticias'
+      preLoaderRoute: typeof NoticiasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/recuperar-senha': {
       id: '/recuperar-senha'
       path: '/recuperar-senha'
@@ -175,6 +294,13 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resultados': {
+      id: '/resultados'
+      path: '/resultados'
+      fullPath: '/resultados'
+      preLoaderRoute: typeof ResultadosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/aprovacoes': {
@@ -205,6 +331,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPainelRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/equipes/': {
+      id: '/equipes/'
+      path: '/equipes'
+      fullPath: '/equipes/'
+      preLoaderRoute: typeof EquipesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/equipes/$slug': {
+      id: '/equipes/$slug'
+      path: '/equipes/$slug'
+      fullPath: '/equipes/$slug'
+      preLoaderRoute: typeof EquipesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -229,8 +369,15 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   CadastroRoute: CadastroRoute,
+  ClassificacaoRoute: ClassificacaoRoute,
+  EventoRoute: EventoRoute,
+  InicioRoute: InicioRoute,
+  NoticiasRoute: NoticiasRoute,
   RecuperarSenhaRoute: RecuperarSenhaRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  ResultadosRoute: ResultadosRoute,
+  EquipesSlugRoute: EquipesSlugRoute,
+  EquipesIndexRoute: EquipesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
