@@ -39,14 +39,14 @@ export function PortalHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-surface">
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4 sm:px-6 lg:h-[72px] lg:px-8">
+      <div className="mx-auto flex h-16 max-w-7xl items-center gap-2 px-3 sm:gap-3 sm:px-6 lg:h-[72px] lg:px-8">
         <Link
           to="/inicio"
-          className="flex shrink-0 items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="flex min-w-0 items-center gap-2 rounded-md sm:gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           aria-label="MouseTrap Car Race — página inicial"
         >
           <img src={mascot.url} alt="" width={48} height={48} className="size-10 object-contain lg:size-12" />
-          <span className="whitespace-nowrap font-headline text-sm text-brand sm:text-base">
+          <span className="truncate whitespace-nowrap font-headline text-[13px] text-brand sm:text-base">
             MouseTrap <span className="text-foreground">Car Race</span>
           </span>
         </Link>
@@ -68,7 +68,7 @@ export function PortalHeader() {
           ))}
         </nav>
 
-        <div className="ml-auto flex items-center gap-1 lg:ml-2">
+        <div className="ml-auto flex shrink-0 items-center gap-0.5 sm:gap-1 lg:ml-2">
           <NotificationsButton />
           <ProfileMenu />
           <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
@@ -136,9 +136,9 @@ function ProfileMenu() {
 
   if (!session) {
     return (
-      <Button asChild variant="ink" size="sm" className="h-9 rounded-full px-4 text-sm font-bold">
-        <Link to="/">
-          <LogIn aria-hidden="true" /> Entrar
+      <Button asChild variant="ink" size="sm" className="size-9 rounded-full px-0 text-sm font-bold sm:w-auto sm:px-4">
+        <Link to="/" aria-label="Entrar">
+          <LogIn aria-hidden="true" /> <span className="hidden sm:inline">Entrar</span>
         </Link>
       </Button>
     );
