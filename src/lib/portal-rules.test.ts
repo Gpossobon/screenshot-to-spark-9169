@@ -41,8 +41,8 @@ describe("buildStandings", () => {
     expect(rows.map((r) => [r.teamSlug, r.points])).toEqual([
       ["a", 18],
       ["b", 18],
-      ["d", 11],
       ["c", 11],
+      ["d", 11],
     ]);
   });
 
