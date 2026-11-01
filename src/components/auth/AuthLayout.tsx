@@ -11,7 +11,7 @@ export function AuthHeader({ mode, actions }: { mode: Mode; actions?: ReactNode 
     <header className="border-b border-border bg-surface">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:h-16 sm:px-8 lg:h-20 lg:short:h-16">
         <Link
-          to="/"
+          to="/inicio"
           className="flex items-center gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           aria-label="MouseTrap Car Race — página inicial"
         >
