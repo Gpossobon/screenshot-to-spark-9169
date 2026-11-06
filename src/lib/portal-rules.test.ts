@@ -47,9 +47,9 @@ describe("buildStandings", () => {
   });
 
   it("breaks ties by number of race wins", () => {
-    const rows = buildStandings(["b", "a"], [races[0], races[1]]);
+    const rows = buildStandings(["b", "a"], races.slice(0, 2));
     // a and b both have 18 points and 1 win each → alphabetical fallback.
-    expect(rows[0].teamSlug).toBe("a");
+    expect(rows[0]?.teamSlug).toBe("a");
   });
 
   it("highlights only the top three as podium", () => {
