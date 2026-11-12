@@ -4,7 +4,6 @@ import { useEffect, useState, type FormEvent } from "react";
 import { AuthField } from "@/components/auth/AuthField";
 import { AuthLayout } from "@/components/auth/AuthLayout";
 import { FormAlert } from "@/components/auth/FormAlert";
-import { GoogleButton, OrDivider } from "@/components/auth/GoogleButton";
 import { PasswordRequirements } from "@/components/auth/PasswordRequirements";
 import { Button } from "@/components/ui/button";
 import { useAuthSession } from "@/hooks/use-auth-session";
@@ -196,8 +195,6 @@ function SignupPage() {
         </Button>
       </form>
 
-      <OrDivider />
-      <GoogleButton label="Cadastrar com Google" onError={setFormError} />
 
       <div className="mt-6 border-t border-border pt-4 short:mt-4 short:pt-3 text-[15px] font-semibold text-foreground">
         Já tem uma conta?{" "}
