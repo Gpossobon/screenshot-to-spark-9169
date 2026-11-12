@@ -1,0 +1,66 @@
+rules_version = '2';
+// MouseTrap Car Race — cole este arquivo em Firestore → Regras e publique.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null && request.auth.token.email_verified == true; }
+    function isAdmin() { return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)); }
+    function teamAfter(id) { return getAfter(/databases/$(database)/documents/teams/$(id)).data; }
+    function teamBefore(id) { return get(/databases/$(database)/documents/teams/$(id)).data; }
+
+    // Admins are created by hand in the console.
+    match /admins/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow write: if false;
+    }
+
+    match /profiles/{uid} {
+      allow read: if signedIn();
+      // Own document: academic data; teamId only via creating own team.
+      allow create: if signedIn() && request.auth.uid == uid && request.resource.data.teamId == null;
+      allow update: if signedIn() && (
+        (request.auth.uid == uid && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['teamId']))
+        || teamChangeAllowed(uid)
+      );
+      allow delete: if false;
+
+      function teamChangeAllowed(uid) {
+        let oldT = resource.data.get('teamId', null);
+        let newT = request.resource.data.get('teamId', null);
+        return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['teamId']) && (
+          // Joining: the caller is that team's captain and lists this person.
+          (oldT == null && newT != null && teamAfter(newT).captainId == request.auth.uid
+            && uid in teamAfter(newT).memberIds)
+          // Leaving: removed by the captain of the current team.
+          || (oldT != null && newT == null && uid != request.auth.uid
+            && teamBefore(oldT).captainId == request.auth.uid && !(uid in teamAfter(oldT).memberIds))
+        );
+      }
+    }
+
+    match /captainRequests/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || isAdmin());
+      allow create: if signedIn() && request.auth.uid == uid && request.resource.data.status == 'pending';
+      allow delete: if signedIn() && request.auth.uid == uid && resource.data.status != 'approved';
+      // Only the admin decides.
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])
+        && request.resource.data.status in ['approved', 'rejected'];
+    }
+
+    match /teams/{teamId} {
+      allow read: if signedIn();
+      // A team id is its captain's uid; needs an approved captain request.
+      allow create: if signedIn() && teamId == request.auth.uid
+        && request.resource.data.captainId == request.auth.uid
+        && request.resource.data.memberIds == [request.auth.uid]
+        && get(/databases/$(database)/documents/captainRequests/$(request.auth.uid)).data.status == 'approved'
+        && getAfter(/databases/$(database)/documents/profiles/$(request.auth.uid)).data.teamId == teamId;
+      allow update: if signedIn() && resource.data.captainId == request.auth.uid
+        && request.resource.data.captainId == resource.data.captainId
+        && request.auth.uid in request.resource.data.memberIds
+        && request.resource.data.memberIds.size() <= 5
+        && request.resource.data.members.size() == request.resource.data.memberIds.size();
+      allow delete: if false;
+    }
+  }
+}
